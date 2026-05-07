@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Global Services | Imports & Investments</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+            color: #1E2A3E;
+            scroll-behavior: smooth;
+        }
+
+        /* Colores temáticos: Azul oscuro, Rojo, Blanco */
+        :root {
+            --dark-blue: #0B2A4A;
+            --crimson: #C52828;
+            --pure-white: #FFFFFF;
+            --light-gray: #F8F9FC;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+            --border-radius: 16px;
+        }
+
+        /* Header */
+        .navbar {
+            background: var(--pure-white);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: var(--dark-blue);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.7rem;
+            box-shadow: 0 4px 8px rgba(197,40,40,0.2);
+            border-left: 3px solid var(--crimson);
+            border-bottom: 3px solid var(--crimson);
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            color: var(--crimson);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--dark-blue);
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--crimson);
+        }
+
+        /* Dropdown de idioma con banderas */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .lang-selector {
+            background: #f0f2f5;
+            padding: 6px 24px 6px 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .lang-selector:hover {
+            background: #e6e9ef;
+            border-color: var(--crimson);
+        }
+        .lang-flag-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            margin-left: 4px;
+            color: var(--dark-blue);
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            min-width: 140px;
+            z-index: 100;
+            display: none;
+            border: 1px solid #edf2f7;
+        }
+        .lang-dropdown.active .dropdown-menu {
+            display: block;
+        }
+        .dropdown-item {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+        .dropdown-item:hover {
+            background: #f8f9fc;
+        }
+        .dropdown-item .flag-icon {
+            font-size: 1.3rem;
+        }
+
+        section {
+            padding: 80px 5%;
+            border-bottom: 1px solid #eaeef5;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--crimson);
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            border-radius: 4px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #F0F4FA 0%, #FFFFFF 100%);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-content h2 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            font-weight: 800;
+        }
+        .hero-content .highlight {
+            color: var(--crimson);
+        }
+        .hero-img {
+            flex: 1;
+            text-align: center;
+        }
+        .hero-img img {
+            max-width: 100%;
+            border-radius: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .service-card, .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #edf2f7;
+        }
+        .service-card:hover, .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark-blue);
+        }
+        .card-content p {
+            color: #34495E;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background: var(--crimson);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        .btn-primary:hover {
+            background: #9e1e1e;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--crimson);
+            color: var(--crimson);
+            padding: 7px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--crimson);
+            color: white;
+        }
+
+        /* Carrito flotante */
+        .cart-sidebar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1100;
+        }
+        .cart-toggle {
+            background: var(--dark-blue);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            position: relative;
+        }
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            z-index: 1200;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .cart-panel.open {
+            right: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 12px;
+        }
+        .cart-items {
+            flex: 1;
+            margin: 20px 0;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 8px;
+        }
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-top: 2px solid #ccc;
+            padding-top: 12px;
+        }
+        .ecommerce-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            background: white;
+        }
+        .social-icons a:hover i {
+            color: var(--crimson);
+        }
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+        }
+        .contact-form button {
+            background: var(--crimson);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        @media (max-width: 780px) {
+            .navbar { flex-direction: column; gap: 1rem; }
+            .nav-links { justify-content: center; gap: 1rem; }
+            .hero-content h2 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .cart-panel { width: 100%; right: -100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo-area">
+        <div class="logo-icon">
+            <span>GS</span>
+        </div>
+        <div class="logo-text">
+            <h1>Global Services</h1>
+            <p>IMPORTS & INVESTMENTS</p>
+        </div>
+    </div>
+    <div class="nav-links">
+        <a href="#home" data-i18n="nav_home">Home</a>
+        <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
+        <a href="#servicios" data-i18n="nav_services">Servicios</a>
+        <a href="#ecommerce" data-i18n="nav_ecommerce">Ecommerce</a>
+        <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+        
+        <!-- Dropdown con banderas: España y Australia -->
+        <div class="lang-dropdown" id="langDropdown">
+            <div class="lang-selector" id="langSelectorBtn">
+                <span class="lang-flag-icon" id="currentFlag">🇪🇸</span>
+                <span id="currentLangLabel">Español</span>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+            </div>
+            <div class="dropdown-menu">
+                <div class="dropdown-item" data-lang="es">
+                    <span class="flag-icon">🇪🇸</span>
+                    <span>Español</span>
+                </div>
+                <div class="dropdown-item" data-lang="en">
+                    <span class="flag-icon">🇦🇺</span>
+                    <span>English (AU)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="home">
+    <div class="hero">
+        <div class="hero-content">
+            <h2 data-i18n="hero_title">Impulsamos <span class="highlight">tu negocio</span> global</h2>
+            <p style="font-size:1.2rem; margin: 1rem 0;" data-i18n="hero_desc">Importaciones, asesoría, arte en soldadura, articulos para el hogar y oportunidades de inversión. Conectamos mercados con excelencia.</p>
+            <a href="#ecommerce" class="btn-primary" style="display: inline-block; margin-top: 10px;" data-i18n="hero_cta">Explorar productos →</a>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=500&auto=format" alt="imports shipping">
+        </div>
+    </div>
+    <div style="margin-top: 3rem;">
+        <h3 class="section-title" data-i18n="featured_products">Productos estrella para importar</h3>
+        <div class="cards-grid" id="featured-gallery"></div>
+    </div>
+</section>
+
+<section id="nosotros">
+    <h3 class="section-title" data-i18n="about_title">Quiénes Somos</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+        <div style="flex:1"><img src="img/aboutus.jpg" style="width:100%; border-radius: 24px;" alt="team"></div>
+        <div style="flex:1">
+            <p data-i18n="about_text1"><strong>Global Services Imports and Investments</strong> nace para conectar emprendedores y empresas con productos de alta calidad desde mercados internacionales. Combinamos estrategia, arte y soluciones industriales.</p>
+            <p style="margin-top:1rem" data-i18n="about_text2">Ofrecemos asesoría personalizada en construcción de productos artísticos, soldadura estructural, artículos para el hogar y proyectos de inversión con alto retorno.</p>
+        </div>
+    </div>
+</section>
+
+<section id="servicios">
+    <h3 class="section-title" data-i18n="services_title">Nuestros Servicios</h3>
+    <div class="cards-grid" id="services-container"></div>
+</section>
+
+<section id="ecommerce">
+    <div class="ecommerce-header">
+        <h3 class="section-title" data-i18n="ecommerce_title">Tienda / Importaciones</h3>
+        <span style="background:#f0f0f0; padding: 5px 12px; border-radius: 50px;" data-i18n="cart_info">Agrega productos y finaliza pedido</span>
+    </div>
+    <div class="cards-grid" id="products-store"></div>
+</section>
+
+<section id="contacto">
+    <h3 class="section-title" data-i18n="contact_title">Contáctanos</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+        <div style="flex:1">
+            <p data-i18n="contact_text">Escríbenos y te asesoraremos en importaciones, inversiones o productos personalizados. Recibirás respuesta a la brevedad.</p>
+            <i class="fas fa-envelope" style="color: var(--crimson);"></i> globalservicesinvestandimport@gmail.com
+        </div>
+        <div style="flex:2">
+            <form id="contactForm" class="contact-form">
+                <input type="text" id="contactName" placeholder="Nombre / Name" required>
+                <input type="email" id="contactEmail" placeholder="Email" required>
+                <textarea rows="4" id="contactMsg" placeholder="Mensaje / Message"></textarea>
+                <button type="submit" data-i18n="send_btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="social-icons">
+        <a href="#" target="_blank" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="copyright" id="copyrightText">© 2026 Global Services Imports & Investments. Todos los derechos reservados.</div>
+</footer>
+
+<div class="cart-sidebar">
+    <div class="cart-toggle" id="cartToggle">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCountBadge" style="background: var(--crimson); border-radius: 30px; font-size: 12px; padding: 2px 6px; position: absolute; top: -5px; right: -8px;">0</span>
+    </div>
+</div>
+<div id="cartPanel" class="cart-panel">
+    <div class="cart-header">
+        <h3 data-i18n="cart_title">Tu Carrito</h3>
+        <i class="fas fa-times" id="closeCart" style="cursor:pointer; font-size:1.3rem;"></i>
+    </div>
+    <div id="cartItemsList" class="cart-items">Carrito vacío</div>
+    <div class="cart-total" id="cartTotal">Total: $0</div>
+    <button id="checkoutBtn" class="btn-primary" style="margin-top: 1rem; width:100%;" data-i18n="checkout_btn">Procesar transacción →</button>
+    <small style="margin-top: 8px; display:block;" data-i18n="cart_note">Los pedidos se enviarán al correo administrador.</small>
+</div>
+
+<script>
+    // Traducciones
+    const translations = {
+        es: {
+            nav_home: "Inicio", nav_about: "Nosotros", nav_services: "Servicios", nav_ecommerce: "Ecommerce", nav_contact: "Contacto",
+            hero_title: "Impulsamos <span class='highlight'>tu negocio</span> global", hero_desc: "Importaciones, asesoría, arte en soldadura, articulos para el hogar y oportunidades de inversión. Conectamos mercados con excelencia.",
+            hero_cta: "Explorar productos →", featured_products: "Categorías para importar", about_title: "Quiénes Somos",
+            about_text1: "<strong>Global Services Imports and Investments</strong> nace para conectar emprendedores y empresas con productos de alta calidad desde mercados internacionales. Combinamos estrategia, arte y soluciones industriales.",
+            about_text2: "Ofrecemos asesoría personalizada en construcción de productos artísticos, soldadura estructural, artículos para el hogar y proyectos de inversión con alto retorno.",
+            services_title: "Servicios Especializados", ecommerce_title: "Productos Destacados", contact_title: "Formulario de Contacto",
+            contact_text: "Escríbenos y te asesoraremos en importaciones, inversiones o productos personalizados. Recibirás respuesta a la brevedad.",
+            send_btn: "Enviar Mensaje", cart_title: "Tu Carrito", checkout_btn: "Finalizar Pedido", cart_note: "Al finalizar enviaremos el pedido al correo de la empresa.",
+            cart_info: "Agrega productos y finaliza pedido",
+            copyright: "© 2026 Global Services Imports & Investments. Todos los derechos reservados."
+        },
+        en: {
+            nav_home: "Home", nav_about: "About", nav_services: "Services", nav_ecommerce: "Ecommerce", nav_contact: "Contact",
+            hero_title: "Empower <span class='highlight'>your global</span> business", hero_desc: "Imports, consulting, welding art, home goods and investment opportunities. Connecting markets with excellence.",
+            hero_cta: "Explore products →", featured_products: "Featured import categories", about_title: "About Us",
+            about_text1: "<strong>Global Services Imports and Investments</strong> connects entrepreneurs & businesses with high-quality products from international markets. We combine strategy, art and industrial solutions.",
+            about_text2: "We offer personalized consulting in artistic product construction, structural welding, household items and high-return investment projects.",
+            services_title: "Specialized Services", ecommerce_title: "Featured Products", contact_title: "Contact Form",
+            contact_text: "Write to us and we will advise you on imports, investments or custom products. You'll receive a prompt reply.",
+            send_btn: "Send Message", cart_title: "Your Cart", checkout_btn: "Checkout", cart_note: "Upon completion, order will be sent to company email.",
+            cart_info: "Add items & complete order",
+            copyright: "© 2026 Global Services Imports & Investments. All rights reserved."
+        }
+    };
+    let currentLang = 'es';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        // Textos estáticos con i18n
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang][key]) {
+                if(key === 'hero_title') el.innerHTML = translations[lang][key];
+                else if(key === 'about_text1' || key === 'about_text2') el.innerHTML = translations[lang][key];
+                else el.innerText = translations[lang][key];
+            }
+        });
+        // Footer copyright
+        const copyrightEl = document.getElementById('copyrightText');
+        if(copyrightEl) copyrightEl.innerText = translations[lang].copyright;
+        
+        renderServices();
+        renderFeaturedProducts();
+        renderEcommerceProducts();
+        updateCartLangText();
+        
+        const flagElem = document.getElementById('currentFlag');
+        const labelElem = document.getElementById('currentLangLabel');
+        if (lang === 'es') {
+            flagElem.innerHTML = '🇪🇸';
+            labelElem.innerText = 'Español';
+        } else {
+            flagElem.innerHTML = '🇦🇺';
+            labelElem.innerText = 'English';
+        }
+    }
+
+    function updateCartLangText(){
+        const cartTitle = document.querySelector('#cartPanel h3');
+        if(cartTitle) cartTitle.innerText = currentLang === 'es' ? 'Tu Carrito' : 'Your Cart';
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        if(checkoutBtn) checkoutBtn.innerText = currentLang === 'es' ? 'Finalizar Pedido' : 'Checkout';
+        const note = document.querySelector('#cartPanel small');
+        if(note) note.innerText = currentLang === 'es' ? 'Los pedidos se enviarán al correo administrador.' : 'Orders will be sent to admin email.';
+        const cartInfoSpan = document.querySelector('.ecommerce-header span');
+        if(cartInfoSpan) cartInfoSpan.innerText = currentLang === 'es' ? 'Agrega productos y finaliza pedido' : 'Add items & complete order';
+    }
+
+    // Servicios
+    const servicesData = [
+        { img: "img/importadvisory.jpg", title_es: "Asesoría en Importación", desc_es: "Gestión aduanera, proveedores globales, logística y reducción de costos.", title_en: "Import Advisory", desc_en: "Customs management, global sourcing, logistics & cost reduction." },
+        { img: "img/artcreativewleding.jpg", title_es: "Arte & Soldadura Creativa", desc_es: "Diseño y fabricación de esculturas metálicas, mobiliario artístico y soldadura personalizada.", title_en: "Art & Creative Welding", desc_en: "Design and fabrication of metal sculptures, artistic furniture, custom welding." },
+        { img: "img/homedailyusegoods.jpg", title_es: "Artículos Hogar y uso diario", desc_es: "Vajilla, textiles, menaje y decoración con estándares internacionales.", title_en: "Home & Daily Use Goods", desc_en: "Tableware, textiles, houseware and decor with international standards." },
+        { img: "img/plants.jpg", title_es: "Oportunidades de Inversión", desc_es: "Proyectos de importación rentables, joint ventures, financiamiento de contenedores.", title_en: "Investment Opportunities", desc_en: "Profitable import projects, joint ventures, container financing." }
+    ];
+
+    function renderServices() {
+        const container = document.getElementById('services-container');
+        if(container) {
+            container.innerHTML = servicesData.map(s => `
+                <div class="service-card">
+                    <img class="card-img" src="${s.img}" alt="service">
+                    <div class="card-content">
+                        <h3>${currentLang === 'es' ? s.title_es : s.title_en}</h3>
+                        <p>${currentLang === 'es' ? s.desc_es : s.desc_en}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // Featured products - imágenes renovadas y estables
+    const featuredArray = [
+        { img: "img/metalart.jpg", name_es: "Arte en Metal", name_en: "Metal Art" },
+        { img: "img/", name_es: "Muebles Importados", name_en: "Imported Furniture" },
+        { img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=300&auto=format", name_es: "Accesorios Soldadura", name_en: "Welding Accessories" },
+        { img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=300&auto=format", name_es: "Artículos Hogar", name_en: "Home Goods" }
+    ];
+
+    function renderFeaturedProducts() {
+        const gallery = document.getElementById('featured-gallery');
+        if(gallery) {
+            gallery.innerHTML = featuredArray.map(f => `
+                <div class="service-card" style="text-align:center">
+                    <img class="card-img" src="${f.img}" style="height:180px; object-fit:cover;" alt="${f.name_es}">
+                    <div class="card-content"><h4>${currentLang === 'es' ? f.name_es : f.name_en}</h4><span class="btn-outline" style="font-size:0.8rem;">${currentLang === 'es' ? 'Ver más' : 'View'}</span></div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // Productos tienda
+    const shopProducts = [
+        { id:1, img:"img/weldingartlamp.jpg", name_es:"Lámpara Arte Soldadura", name_en:"Welding Art Lamp", price:89, desc_es:"Pieza única de metal.", desc_en:"Unique metal piece." },
+        { id:2, img:"img/homepremium.jpg", name_es:"Juego Hogar Premium", name_en:"Home Premium Set", price:125, desc_es:"Vajilla + textiles.", desc_en:"Dinnerware + textiles." },
+        { id:3, img:"img/ContemporarySculpture.jpg", name_es:"Escultura Contemporánea", name_en:"Contemporary Sculpture", price:210, desc_es:"Acero inoxidable, arte moderno.", desc_en:"Stainless steel modern art." },
+        { id:4, img:"img/initialinvestment.jpg", name_es:"Pack Inversión Inicial", name_en:"Initial Investment Pack", price:450, desc_es:"Kit oportunidad de negocio.", desc_en:"Business opportunity kit." }
+    ];
+
+    let cart = [];
+    function updateCartUI() {
+        const cartDiv = document.getElementById('cartItemsList');
+        const totalSpan = document.getElementById('cartTotal');
+        const countSpan = document.getElementById('cartCountBadge');
+        if(!cartDiv) return;
+        if(cart.length === 0) {
+            cartDiv.innerHTML = currentLang === 'es' ? 'Carrito vacío' : 'Cart empty';
+            totalSpan.innerText = `Total: $0`;
+            countSpan.innerText = '0';
+            return;
+        }
+        let total = 0;
+        let itemCount = 0;
+        cartDiv.innerHTML = cart.map((item, idx) => {
+            total += item.price * item.qty;
+            itemCount += item.qty;
+            return `<div class="cart-item">
+                        <div><strong>${currentLang === 'es' ? item.name_es : item.name_en}</strong> x${item.qty}</div>
+                        <div>$${item.price * item.qty} <button class="remove-item" data-idx="${idx}" style="background:none; border:none; color:var(--crimson); margin-left:10px;"><i class="fas fa-trash-alt"></i></button></div>
+                    </div>`;
+        }).join('');
+        totalSpan.innerText = `Total: $${total}`;
+        countSpan.innerText = itemCount;
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(btn.dataset.idx);
+                cart.splice(idx,1);
+                updateCartUI();
+                saveCartToLocal();
+            });
+        });
+    }
+    function addToCart(product) {
+        const exist = cart.find(p => p.id === product.id);
+        if(exist) exist.qty += 1;
+        else cart.push({ ...product, qty: 1 });
+        updateCartUI();
+        saveCartToLocal();
+        alert(currentLang === 'es' ? 'Producto añadido al carrito' : 'Product added to cart');
+    }
+    function saveCartToLocal() { localStorage.setItem('gs_cart', JSON.stringify(cart)); }
+    function loadCart() { const stored = localStorage.getItem('gs_cart'); if(stored) { cart = JSON.parse(stored); updateCartUI(); } }
+
+    function renderEcommerceProducts() {
+        const container = document.getElementById('products-store');
+        if(container){
+            container.innerHTML = shopProducts.map(p => `
+                <div class="product-card">
+                    <img class="card-img" src="${p.img}" alt="product">
+                    <div class="card-content">
+                        <h3>${currentLang === 'es' ? p.name_es : p.name_en}</h3>
+                        <p>${currentLang === 'es' ? p.desc_es : p.desc_en}</p>
+                        <div style="display:flex; justify-content: space-between; align-items:center; margin-top:12px;">
+                            <span style="font-weight:800; color:var(--dark-blue);">$${p.price}</span>
+                            <button class="btn-primary add-to-cart" data-id="${p.id}">${currentLang === 'es' ? 'Agregar' : 'Add to cart'}</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const pid = parseInt(btn.dataset.id);
+                    const prod = shopProducts.find(p => p.id === pid);
+                    if(prod) addToCart(prod);
+                });
+            });
+        }
+    }
+
+    function checkoutTransaction() {
+        if(cart.length === 0) { alert(currentLang === 'es' ? 'Carrito vacío' : 'Cart empty'); return; }
+        let orderDetails = "";
+        let total = 0;
+        cart.forEach(item => { total += item.price * item.qty; orderDetails += `${currentLang === 'es' ? item.name_es : item.name_en} x${item.qty} = $${item.price * item.qty}\n`; });
+        orderDetails += `\nTOTAL: $${total}\n---\nGracias por su compra.`;
+        const subject = encodeURIComponent(`Pedido Global Services - ${new Date().toLocaleString()}`);
+        const body = encodeURIComponent(`Nuevo pedido:\n${orderDetails}\n\nCliente: ${document.getElementById('contactName')?.value || 'Visitante'}\nCorreo: ${document.getElementById('contactEmail')?.value || 'sin registro'}`);
+        window.location.href = `mailto:globalservicesinvestandimport@gmail.com?subject=${subject}&body=${body}`;
+        alert(currentLang === 'es' ? 'Se abrirá su cliente de correo para enviar el pedido al administrador.' : 'Your email client will open to send the order to the admin.');
+        if(confirm(currentLang === 'es' ? '¿Vaciar carrito tras enviar?' : 'Clear cart after sending?')) { cart = []; updateCartUI(); saveCartToLocal(); }
+    }
+
+    // Contacto
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const msg = document.getElementById('contactMsg').value;
+            const subject = encodeURIComponent(`Consulta desde web - ${name}`);
+            const body = encodeURIComponent(`Nombre: ${name}\nCorreo: ${email}\nMensaje: ${msg}`);
+            window.location.href = `mailto:globalservicesinvestandimport@gmail.com?subject=${subject}&body=${body}`;
+            alert(currentLang === 'es' ? 'Se abrirá tu cliente de correo para enviar el mensaje.' : 'Your email client will open to send.');
+            contactForm.reset();
+        });
+    }
+
+    // Eventos carrito
+    document.getElementById('cartToggle')?.addEventListener('click', () => document.getElementById('cartPanel')?.classList.add('open'));
+    document.getElementById('closeCart')?.addEventListener('click', () => document.getElementById('cartPanel')?.classList.remove('open'));
+    document.getElementById('checkoutBtn')?.addEventListener('click', checkoutTransaction);
+
+    // Dropdown idioma
+    const dropdown = document.getElementById('langDropdown');
+    const selectorBtn = document.getElementById('langSelectorBtn');
+    selectorBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+    });
+    document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target)) dropdown.classList.remove('active');
+    });
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const lang = item.dataset.lang;
+            if(lang === 'es') setLanguage('es');
+            else if(lang === 'en') setLanguage('en');
+            dropdown.classList.remove('active');
+        });
+    });
+
+    // Inicialización
+    setLanguage('es');
+    renderServices();
+    renderFeaturedProducts();
+    renderEcommerceProducts();
+    loadCart();
+    updateCartLangText();
+</script>
+</body>
+</html>
